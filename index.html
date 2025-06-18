@@ -10,30 +10,64 @@
 <head>
 
   <style>
-  /*
-    This specifically targets the mobile product list which is currently
-    stuck at opacity 0, and makes it visible.
-  */
-  .service-one-responsive .service-one-wrap {
-    opacity: 1 !important;
-  }
-</style>
+    /* --- Fix for Mobile Horizontal Overflow --- */
+    @media screen and (max-width: 767px) {
+      .icon-style-two-wrap {
+        /* This overrides the inline transform style on screens 767px and smaller */
+        transform: translate3d(0px, 0px, 0px) !important;
+      }
+    }
 
-    <style>
-  /* This rule makes images and videos scale down to fit the screen */
-  img,
-  video,
-  iframe {
-    max-width: 100%;
-    height: auto;
-  }
+    /* ====== 1. GENERAL RESPONSIVENESS ====== */
+    html,
+    body {
+      overflow-x: hidden;
+    }
 
-  /* This is a safeguard to prevent any horizontal scrollbars */
-  html,
-  body {
-    overflow-x: hidden;
-  }
-</style>
+    img,
+    video,
+    iframe {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ====== 2. ANIMATION TO FORCE IMAGE LAYOUT ====== */
+    /* This animation is a last resort to fight against JavaScript style changes. */
+    @keyframes force-split-image-layout {
+      100% {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    /* ====== 3. FIXES FOR SPECIFIC SECTIONS ====== */
+
+    /* This applies the animation to the problem image. */
+    .home-one-about2-section .split-section-img {
+      animation: force-split-image-layout 0.1s forwards;
+      /* Fallback styles */
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    /* This makes the "Our Products" section visible on mobile. */
+    .service-one-responsive .service-one-wrap {
+      opacity: 1 !important;
+    }
+
+    /* ====== 4. MOBILE-ONLY FIXES ====== */
+    @media screen and (max-width: 991px) {
+
+      /* This makes the "Our Vision" text visible on mobile. */
+      .split-section-content-wrapper {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <style>
     body {
@@ -1172,7 +1206,7 @@
       </div>
     </div>
   </section>
- 
+
 
   <section data-w-id="7310f244-01de-426f-92ba-e7f4205eb833"
     style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
